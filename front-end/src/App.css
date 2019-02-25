@@ -1,0 +1,12 @@
+body{
+    background-image: url('/images/main_background.jpg');
+    background-size:cover;
+}
+@keyframes App-logo-spin{
+    from{
+        transform:rotate (0 deg)
+    }
+    to{
+        transform:rotate (360 deg)
+    }
+}

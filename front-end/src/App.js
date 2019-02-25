@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import Home from './components/home/Home'
-import NavBar from './components/NavBar';
+import Headers from './components/navHeader/Headers';
+import './App.css'
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-      <NavBar/>
-      <Home/>
+      <div>
+        <Headers />
+        <div className="container">
+          <Home/>
+        </div>
       </div>
     );
   }

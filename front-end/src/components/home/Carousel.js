@@ -15,9 +15,9 @@ class Carousel extends Component{
 		}
         return(
             <Slider {...settings}>
-                <div className="slick-image">
-                    <img src=""/>
-                </div>
+                <div className="slick-image"><img src="images/homepage1_1.jpg" alt=""/></div>
+                <div className="slick-image"><img src="images/homepage1_2.jpg" alt=""/></div>
+                <div className="slick-image"><img src="images/homepage1_3.jpg" alt=""/></div>
             </Slider>
         )
     }
