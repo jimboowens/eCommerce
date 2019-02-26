@@ -1,12 +1,15 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var GitHubStrategy = require('passport-github').Strategy;
-const config = require('./config')
-const helmet = require('helmet')
+var config = require('./config')
+var passport = require('passport')
+var helmet = require('helmet')
 app.use(helmet());
+
 
 // Allow cross-origin.....
 app.use(function(req, res, next) {
@@ -16,21 +19,29 @@ app.use(function(req, res, next) {
     next();
   });
 
-//+++++++++++++++++PASSPORT FILES++++++++++++++++//
-const passport = require('passport')
+//================PASSPORT FILES================//
+// passport is for login via (this time, github) a third party. for 'serialized' 
+// session, we must envoke session with passport. look at express-session npm
+// docs for more information
 
+app.use(session({
+    secret:config.passport.secret,
+    resave:config.passport.resave,
+    saveUninitialized:config.passport.saveUnitialized,
+}));
+app.use(passport.initialize())
+app.use(passport.session())
 
-passport.use(new GitHubStrategy({
-    clientID: config.passport.clientID,
+passport.use(new GitHubStrategy(
+  {clientID: config.passport.clientID,
     clientSecret: config.passport.clientSecret,
-    callbackURL: config.passport.callbackURL,
-  },
-  function(accessToken, refreshToken, profile, callback) {
-    console.log('function ran',profile)
-  }
-));
+    callbackURL: config.passport.callbackURL,},
+  (accessToken, refreshToken, profile, callback)=>(callback(null,profile))));
 
+passport.serializeUser((user, callback)=> callback(null,user))
+passport.deserializeUser((user,callback)=> callback(null,user))
 
+//================PASSPORT FILES================//
 
 
 var indexRouter = require('./routes/index');

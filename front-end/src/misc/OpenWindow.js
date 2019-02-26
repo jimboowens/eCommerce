@@ -5,7 +5,7 @@
 
 export default (myUrl) => {
     const windowArea = {
-      width: Math.floor(window.outerWidth * 0.8),
+      width: Math.floor(window.outerWidth * 0.2),
       height: Math.floor(window.outerHeight * 0.5),
     };
   
