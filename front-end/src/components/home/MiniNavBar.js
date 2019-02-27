@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class MiniNavBar extends Component{
     render(){
-        const cats = [
-            'NES',
-            'DREAMCAST',
-            'N64',
-            'PLAYSTATION',
-            'ATARI',
-            'XBOX',
-        ]
+        // const cats = [
+        //     'NES',
+        //     'DREAMCAST',
+        //     'N64',
+        //     'PLAYSTATION',
+        //     'ATARI',
+        //     'XBOX',
+        // ]
         return(
             <nav>
                 <div className="nav-wrapper grey darken-4">
