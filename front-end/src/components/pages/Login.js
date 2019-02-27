@@ -24,19 +24,19 @@ class Login extends Component{
                             <label htmlFor='password'>Enter your password</label>
                         </div>
                         <label>
-                            <Link className='pink-text' to='/forgotPassword'><b>Forgot Password?</b></Link>
+                            <Link className='red-text' to='/forgotPassword'><b>Forgot Password?</b></Link>
                         </label>
                     </div>
                     <br />
                     <center>
                     <div className='row'>
-                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>Login</button>
+                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect grey'>Login</button>
                     </div>
                     </center>
                 </form>
                 </div>
             </div>
-            <Link to="/register">Create account</Link>
+            <Link to="/register" >Create account</Link>
             </center>
             <div className="section"></div>
             <div className="section"></div> 

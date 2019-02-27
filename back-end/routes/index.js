@@ -20,4 +20,9 @@ router.get('/auth/github/callback',passport.authenticate('github'),(req,res)=>{
   // res.json(req.user._json)
 })
 
+router.post('/register',(req,res)=>{
+  console.log('b/e is working')
+  res.json(req.body)
+})
+
 module.exports = router;

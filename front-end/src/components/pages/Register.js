@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
 import authAction from '../../actions/authAction'
 
 class Register extends Component{
@@ -15,6 +16,9 @@ class Register extends Component{
         // const username = document.getElementById('email').value
         const password = event.target[1].value
         console.log(username,password)
+        this.props.authAction({
+            username,password
+        })
     }
 
     render(){
@@ -39,13 +43,13 @@ class Register extends Component{
                             <label htmlFor='password'>Please enter your password</label>
                         </div>
                         <label>
-                            <Link className='pink-text' to='/forgotPassword'><b>Forgot Password?</b></Link>
+                            <Link className='red-text' to='/forgotPassword'><b>Forgot Password?</b></Link>
                         </label>
                     </div>
                     <br />
                     <center>
                     <div className='row'>
-                        <button type='submit' name='btn_register' className='col s12 btn btn-large waves-effect indigo'>Register</button>
+                        <button type='submit' name='btn_register' className='col s12 btn btn-large waves-effect grey'>Register</button>
                     </div>
                     </center>
                 </form>
@@ -74,7 +78,8 @@ function mapDispatchToProps(dispatcher){
     // dispatch is the thing that sends the action to all reducers
     return(bindActionCreators({
         authAction:authAction,
-    }))
+    },dispatcher))
 }
 
-export default Register;
+// export default Register;
+export default connect(mapDispatchToProps,mapDispatchToProps)(Register)
