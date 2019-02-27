@@ -9,6 +9,15 @@ class Register extends Component{
         super();
     }
 
+    componentWillReceiveProps(newProps){
+        console.log(newProps)
+        if (newProps.auth.msg === 'user exists'){
+
+        }else if (newProps.auth.msg === 'user added'){
+
+        }
+    }
+
     registerSubmit= (event)=>{
         event.preventDefault();
         console.dir(event.target);
