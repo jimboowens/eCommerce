@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './Nav.css'
 import loginTab from '../../misc/OpenWindow';
+import {connect} from 'react-redux';
  // The process: (will be enumerated to come)
-
+let rightNavBar = <br></br>;
 class LoginNavBar extends Component{
     constructor(){
         super()
@@ -25,16 +26,34 @@ class LoginNavBar extends Component{
             // 8. Put it in localstorage so we can use it next time.
 
     render(){
+        // console.log(this.props.auth)
+        if(this.props.auth.username !== undefined){
+            // then user is logged in
+            rightNavBar=<span>welcome, {this.props.auth.username}</span>
+        } else{
+            rightNavBar=
+            <span>
+                <Link to="/login">Sign in</Link> or <Link to="/register">Register</Link>
+                <button type="button" onClick={this.githubAuth}   className="btn play-button btn-github waves-effect grey darken-2">Login with github</button>
+                <button type="submit" className="btn play-button waves-effect grey darken-2" href="cart">MY CART 0 ITEM - $0.00</button>
+            </span>
+        }
         return(
         <div className="login-nav-bar">
             <div className="left valign-wrapper">WELCOME TO ZAPP GAMES</div>
             <div className="right">
-                <Link to="/login">Sign in</Link> or <Link to="/register">Register</Link>
-                <button type="button" onClick={this.githubAuth}   className="btn play-button btn-github waves-effect grey darken-2">Login with github</button>
-                <button type="submit" className="btn play-button waves-effect grey darken-2" href="cart">MY CART 0 ITEM - $0.00</button>
+                {rightNavBar}
             </div>
         </div>
         )
     }
 }
-export default LoginNavBar;
+
+function mapStateToProps(state){
+    return({
+        auth:state.auth,
+    })
+}
+
+export default connect(mapStateToProps)(LoginNavBar)
+// export default LoginNavBar;

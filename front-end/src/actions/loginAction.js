@@ -6,12 +6,12 @@ import axios from 'axios';
 export default (formData)=>{
     // console.log('authAction is running',formData)
     const axiosPromise = axios({
-        url:`${window.apiHost}/register`,
+        url:`${window.apiHost}/login`,
         method: 'POST',
         data:formData,
     })
-    return({
-        type:'AUTH_ACTION',
+    return{
+        type:'LOGIN_ACTION',
         payload:axiosPromise,
-    })
+    }
 }

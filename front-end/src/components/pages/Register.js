@@ -3,28 +3,38 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import authAction from '../../actions/authAction'
+import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css'
 
 class Register extends Component{
     constructor(){
         super();
+        this.state={
+            msg:"",
+            showAlert:false,
+        }
     }
 
+   
     componentWillReceiveProps(newProps){
-        console.log(newProps)
-        if (newProps.auth.msg === 'user exists'){
-
-        }else if (newProps.auth.msg === 'user added'){
-
-        }
+        console.log(newProps);
+            if(newProps.auth.msg === 'user exists'){
+                this.setState({
+                    showAlert:true,
+                })
+            }else if (newProps.auth.msg ==="user added"){
+                this.props.history.push('/')
+            }
+    
     }
 
     registerSubmit= (event)=>{
         event.preventDefault();
-        console.dir(event.target);
+        // console.dir(event.target);
         const username = event.target[0].value
         // const username = document.getElementById('email').value
         const password = event.target[1].value
-        console.log(username,password)
+        // console.log(username,password)
         this.props.authAction({
             username,password
         })
@@ -33,6 +43,12 @@ class Register extends Component{
     render(){
         return(
         <main>
+            <SweetAlert
+               show={this.state.showAlert}
+               title="Registration Error"
+               text="Email is already registered. Login or chooose a different email."
+               onConfirm={() => this.setState({ showAlert: false })}
+           />
             <center>
             <div className="container">
                 <div className="z-depth-1 grey lighten-4 row register">
@@ -91,4 +107,4 @@ function mapDispatchToProps(dispatcher){
 }
 
 // export default Register;
-export default connect(mapDispatchToProps,mapDispatchToProps)(Register)
+export default connect(mapStateToProps,mapDispatchToProps)(Register)

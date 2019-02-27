@@ -6,7 +6,11 @@
 
 export default (state=[],action)=>{
     // signature takes state and action (signature is the stuff passed into a function set as a parameter)
-    if (action.type ==="AUTH_ACTION") return action.payload.data
+    if (action.type ==="AUTH_ACTION"||action.type ==="LOGIN_ACTION") {
+        // console.log("payload is: ",action.payload)
+        // console.log("data is: ",action.payload.data) 
+        return action.payload.data
+    }
     else if(action.type === "LOGOUT") return [];
     else return state;
     
