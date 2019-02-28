@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const config = require('../config')
-const connection = config.connect
 var bcrypt = require('bcrypt-nodejs')
 const passport = require('passport')
-var pgp = require('pg-promise')()
-const db = pgp(connection);
 var randToken = require('rand-token');
+const db = require('../database')
+
 
 router.get('/auth/github', passport.authenticate('github'))
 
