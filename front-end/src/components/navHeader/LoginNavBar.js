@@ -40,7 +40,9 @@ class LoginNavBar extends Component{
         }
         return(
         <div className="login-nav-bar">
-            <div className="left valign-wrapper">WELCOME TO ZAPP GAMES</div>
+            <div className="left valign-wrapper">
+                WELCOME TO : <Link to="/"> ZAPP GAMES</Link>
+            </div>
             <div className="right">
                 {rightNavBar}
             </div>

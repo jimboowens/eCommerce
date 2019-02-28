@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class MiniNavBar extends Component{
+    constructor(){
+        super()
+
+    }
     render(){
         // const cats = [
         //     'NES',
@@ -13,11 +18,11 @@ class MiniNavBar extends Component{
         return(
             <nav>
                 <div className="nav-wrapper grey darken-4">
-                    <a href="#!" className="brand-logo center">Logo</a>
+                    <Link to="/" className="brand-logo center">Logo</Link>
                     <ul className="left hide-on-med-and-down">
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li className="active"><a href="collapsible.html">JavaScript</a></li>
+                        <Link to="sass.html">Sass</Link>
+                        <Link to="badges.html">Components</Link>
+                        <Link className="active" to="collapsible.html">JavaScript</Link>
                     </ul>
                 </div>
           </nav>

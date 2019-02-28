@@ -3,11 +3,27 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import loginAction from '../../actions/loginAction'
+import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css'
 
 class Login extends Component{
+    constructor(){
+        super()
+        this.state={
+            msg:"",
+            showAlert:false
+        }
+    }
 
     componentWillReceiveProps(newProps){
         console.log(newProps)
+        if (newProps.auth.msg === "loginSuccess"){
+            this.props.history.push('/')
+        }else if (newProps.auth.msg === "bad password"|| newProps.auth.msg==="bad romance"){
+            this.setState({
+                showAlert:true,
+            })
+        }
     }
 
     handleLogin = (event)=>{
@@ -23,6 +39,12 @@ class Login extends Component{
     render(){
         return(
         <main>
+            <SweetAlert
+               show={this.state.showAlert}
+               title="Sign-in Error"
+               text="Email/password is not valid. Please re-enter your information or register."
+               onConfirm={() => this.setState({ showAlert: false })}
+           />
             <center>
             <div className="container">
                 <div className="z-depth-1 grey lighten-4 row login">

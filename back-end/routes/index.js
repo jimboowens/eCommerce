@@ -21,6 +21,15 @@ router.get('/auth/github/callback',passport.authenticate('github'),(req,res)=>{
   // res.json(req.user._json)
 })
 
+router.post('/search', (req,res)=>{
+  console.log(req.body.searchCriteria)
+  const searchCriteria=req.body.searchCriteria;
+  const searchQuery = `select * from games where gamename like '%$1%'`
+  db.query(searchQuery,[searchCriteria]).then((results)=>{
+    console.log(results)
+  })
+})
+
 router.post('/register',(req,res)=>{
   // console.log('b/e is working')
   const checkUsernameQuery = `SELECT * FROM users WHERE username = $1`
