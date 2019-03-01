@@ -17,7 +17,7 @@ class Register extends Component{
 
    
     componentWillReceiveProps(newProps){
-        console.log(newProps);
+        // console.log(newProps);
             if(newProps.auth.msg === 'user exists'){
                 this.setState({
                     showAlert:true,

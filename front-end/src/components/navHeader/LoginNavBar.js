@@ -6,9 +6,6 @@ import {connect} from 'react-redux';
  // The process: (will be enumerated to come)
 let rightNavBar = <br></br>;
 class LoginNavBar extends Component{
-    constructor(){
-        super()
-    }
 
     githubAuth = ()=>{
         // 1. User clicks and opens the new window via loginTab
@@ -26,27 +23,30 @@ class LoginNavBar extends Component{
             // 8. Put it in localstorage so we can use it next time.
 
     render(){
+    
         // console.log(this.props.auth)
         if(this.props.auth.username !== undefined){
             // then user is logged in
-            rightNavBar=<span>welcome, {this.props.auth.username}</span>
+            rightNavBar=<span>welcome, {this.props.auth.username}<Link to="/cart">MY CART {this.props.cart.totalItems} ITEM(S) - $0.00</Link></span>
         } else{
             rightNavBar=
             <span>
                 <Link to="/login">Sign in</Link> or <Link to="/register">Register</Link>
                 <button type="button" onClick={this.githubAuth}   className="btn play-button btn-github waves-effect grey darken-2">Login with github</button>
-                <button type="submit" className="btn play-button waves-effect grey darken-2" href="cart">MY CART 0 ITEM - $0.00</button>
+                <Link to="/cart">MY CART {this.props.cart.totalItems} ITEM(S) - $0.00</Link>
             </span>
         }
         return(
-        <div className="login-nav-bar">
-            <div className="left valign-wrapper">
-                WELCOME TO : <Link to="/"> ZAPP GAMES</Link>
+            
+            <div className="login-nav-bar">
+                <div className="left valign-wrapper">
+                    WELCOME TO : <Link to="/"> ZAPP GAMES</Link>
+                </div>
+                <div className="right">
+                    {rightNavBar}
+                </div>
             </div>
-            <div className="right">
-                {rightNavBar}
-            </div>
-        </div>
+
         )
     }
 }
@@ -54,6 +54,7 @@ class LoginNavBar extends Component{
 function mapStateToProps(state){
     return({
         auth:state.auth,
+        cart:state.cart,
     })
 }
 

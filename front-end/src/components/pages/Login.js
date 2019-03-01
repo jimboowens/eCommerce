@@ -16,8 +16,9 @@ class Login extends Component{
     }
 
     componentWillReceiveProps(newProps){
-        console.log(newProps)
+        // console.log(newProps)
         if (newProps.auth.msg === "user logged in"){
+            // console.log(this.props.history)
             this.props.history.push('/')
         }else if (newProps.auth.msg === "bad password"|| newProps.auth.msg==="bad romance"){
             this.setState({

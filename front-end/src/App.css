@@ -1,6 +1,12 @@
+html{
+    background-color:black;
+}
+
 body{
+    /* margin-top:30px; */
     background-image: url('/images/main_background.jpg');
     background-size:cover;
+
 }
 @keyframes App-logo-spin{
     from{

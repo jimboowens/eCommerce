@@ -46,6 +46,7 @@ passport.deserializeUser((user,callback)=> callback(null,user))
 
 var indexRouter = require('./routes/index');
 var gamesRouter = require('./routes/games')
+var cartRouter = require('./routes/cart')
 
 
 app.use(logger('dev'));
@@ -56,6 +57,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/games',gamesRouter);
-
+app.use('/cart',cartRouter);
 
 module.exports = app;

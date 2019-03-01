@@ -5,12 +5,17 @@
 // if you want to change me, let me know by an action.type
 
 export default (state=[],action)=>{
-    // signature takes state and action (signature is the stuff passed into a function set as a parameter)
-    if (action.type ==="AUTH_ACTION"||action.type ==="LOGIN_ACTION" || action.type ==="SEARCH_ACTION") {
-        // console.log("payload is: ",action.payload)
-        // console.log("data is: ",action.payload.data) 
-        return action.payload.data
-    }else if(action.type === "LOGOUT") return [];
-    else return state;
     
+    // signature takes state and action (signature is the stuff passed into a function set as a parameter)
+    switch (action.type) {
+        case "AUTH_ACTION":
+        case "LOGIN_ACTION":
+        case "SEARCH_ACTION":
+            return action.payload.data;
+        case "LOGOUT":
+            return [];
+        default:
+            return state;
+    }
 }
+    
