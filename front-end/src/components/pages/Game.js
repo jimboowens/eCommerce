@@ -29,7 +29,7 @@ class Game extends Component{
 
     componentWillReceiveProps(newProps){
         // console.log(newProps)
-        if (newProps.cart.length != this.props.cart.length){
+        if (newProps.cart.length !== this.props.cart.length){
             this.props.history.push('/?added=item')
         }
     }

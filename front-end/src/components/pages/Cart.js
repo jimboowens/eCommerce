@@ -69,10 +69,14 @@ class Cart extends Component{
 				</div>
 			)
 		}else{
-			var cartArray = this.props.cart.items.map((product,index)=>{
-				// console.log(product)
+			var cartArray = this.props.cart.contents.map((product,index)=>{
+				console.log(product)
+				console.log(product.name)
 				return (
-					<CartRow key={index} product={product} />
+					<div>≈
+						<CartRow key={index} product={product} />
+						{product.name}
+					</div>
 				)
 			})
 			return(

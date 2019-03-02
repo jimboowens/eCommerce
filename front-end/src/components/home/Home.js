@@ -16,7 +16,7 @@ class Home extends Component{
 
     componentDidMount(){
         console.log('got to did mount')
-        if (this.props.location.search=="?added=item"){this.setState({showAlert:true})}
+        if (this.props.location.search==="?added=item"){this.setState({showAlert:true})}
     }
 
     render(){
