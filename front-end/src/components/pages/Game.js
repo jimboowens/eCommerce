@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/game.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import updateCart from '../../actions/updateCart'
 
 class Game extends Component{
     constructor(){
         super()
         this.state = {
-            game: [],
-            quantity:0,
+            game: {},
         }
     }
-
 
     componentDidMount(){
         // console.log(this.props.match.params.id)
@@ -24,6 +25,22 @@ class Game extends Component{
             })
         })
 
+    }
+
+    componentWillReceiveProps(newProps){
+        // console.log(newProps)
+        if (newProps.cart.length != this.props.cart.length){
+            this.props.history.push('/?added=item')
+        }
+    }
+
+    addToCart = (event)=>{
+        console.log(this.props.auth.token)
+        const token = this.props.auth.token
+        this.props.updateCart(
+            token,
+            this.state.game.id
+        )
     }
 
     render(){
@@ -49,13 +66,14 @@ class Game extends Component{
                         </div>
                         <div className="row">
                             <div className="col s1">
-                                <span>Qty: {this.state.game.quantity}</span>
+                                {/* <span>Qty: {this.state.game.quantity}</span> */}
+                                <span>Qty: 0</span>
                             </div>
                             <div className="col s8">
                                 <input type="text" name="quantity"/>
                             </div>
                             <div className="col s2">
-                                <button>ADD TO CART</button>
+                                <button onClick={this.addToCart}>ADD TO CART</button>
                             </div>
                         </div>
                     </div>
@@ -65,4 +83,16 @@ class Game extends Component{
     }
 }
 
-export default Game;
+function mapStateToProps(state){
+    return{
+        auth: state.auth,
+        cart: state.cart,
+    }
+}
+function mapDispatchToProps(dispatcher){
+    return bindActionCreators({
+        updateCart,
+    },dispatcher)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Game);

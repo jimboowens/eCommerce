@@ -23,17 +23,17 @@ class LoginNavBar extends Component{
             // 8. Put it in localstorage so we can use it next time.
 
     render(){
-    
+        console.log(this.props)
         // console.log(this.props.auth)
         if(this.props.auth.username !== undefined){
             // then user is logged in
-            rightNavBar=<span>welcome, {this.props.auth.username}<Link to="/cart">MY CART {this.props.cart.totalItems} ITEM(S) - $0.00</Link></span>
+            rightNavBar=<span>welcome, {this.props.auth.username}<Link to="/cart">MY CART {this.props.cart.totalitems}{this.props.cart.totalprice}</Link></span>
         } else{
             rightNavBar=
             <span>
-                <Link to="/login">Sign in</Link> or <Link to="/register">Register</Link>
-                <button type="button" onClick={this.githubAuth}   className="btn play-button btn-github waves-effect grey darken-2">Login with github</button>
-                <Link to="/cart">MY CART {this.props.cart.totalItems} ITEM(S) - $0.00</Link>
+                <Link className="loginLinks" to="/login">Sign in</Link>,<Link className="loginLinks" to="/register">Register</Link>,
+                or Log in with<Link className="loginLinks" onClick={this.githubAuth} to="/"> github</Link>
+                <Link className="loginLinks" to="/cart">MY CART {this.props.cart.total}{this.props.cart.items}</Link>
             </span>
         }
         return(

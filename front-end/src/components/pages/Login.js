@@ -94,7 +94,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatcher){
     return bindActionCreators({
-        loginAction:loginAction,
+        loginAction,
     },dispatcher)
 }
 

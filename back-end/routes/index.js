@@ -22,10 +22,11 @@ router.get('/auth/github/callback',passport.authenticate('github'),(req,res)=>{
 router.post('/search', (req,res)=>{
   console.log(req.body.searchCriteria)
   const searchCriteria=req.body.searchCriteria;
-  const searchQuery = `select * from games where gamename like '%$1%'`
+  const searchQuery = `select * from games where name like $1`
   db.query(searchQuery,[searchCriteria]).then((results)=>{
     console.log(results)
-  })
+    res.json(results)
+  }).catch((err)=>{if(err) throw err})
 })
 
 router.post('/register',(req,res)=>{

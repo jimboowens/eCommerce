@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import cartAction from '../../actions/cartAction';
-import { Link } from 'react-router-dom';
 import CartRow from '../utility/CartRow';
 import axios from 'axios';
 
@@ -62,7 +61,7 @@ class Cart extends Component{
 
 	render(){
 		console.log(this.props.cart);
-		if(!this.props.cart.totalItems){
+		if(!this.props.cart.items){
 			// if this return occurs, the render is DONE
 			return(
 				<div>
@@ -70,7 +69,7 @@ class Cart extends Component{
 				</div>
 			)
 		}else{
-			var cartArray = this.props.cart.products.map((product,index)=>{
+			var cartArray = this.props.cart.items.map((product,index)=>{
 				// console.log(product)
 				return (
 					<CartRow key={index} product={product} />
