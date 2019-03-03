@@ -6,8 +6,8 @@ function CartRow(props){
 	const product = props.product;
 	return(
 		<tr>
-			<td>{product.productName}</td>
-			<td>{product.buyPrice}</td>
+			<td>{product.name}</td>
+			<td>{product.price}</td>
 			<td><button className="btn btn-danger">Delete</button></td>
 		</tr>
 	)

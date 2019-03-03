@@ -15,7 +15,7 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        console.log('got to did mount')
+        // console.log(this.props)
         if (this.props.location.search==="?added=item"){this.setState({showAlert:true})}
     }
 
@@ -23,12 +23,7 @@ class Home extends Component{
         return(
             <div className="col s12 home">
 
-            <SweetAlert
-               show={this.state.showAlert}
-               title="Item Added!"
-               text="We have updated your cart. Continue shopping, or click on the cart to proceed to checkout."
-               onConfirm={() => this.setState({ showAlert: false })}
-           />
+                <SweetAlert show={this.state.showAlert} title="Item Added!" text="We have updated your cart. Continue shopping, or click on the cart to proceed to checkout." onConfirm={()=>this.setState({showAlert: false})} />
                 <Carousel />
                 <MiniNavBar />
                 <Content />

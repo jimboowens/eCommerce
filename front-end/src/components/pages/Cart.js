@@ -11,7 +11,6 @@ class Cart extends Component{
 		this.state={
 			totalItems:[],
 		}
-
 	}
 
 	makePayment=()=>{
@@ -19,11 +18,11 @@ class Cart extends Component{
             key: 'pk_test_K9L17worNm0z7lHpdssTpwqr',
             locale: 'auto',
             image: 'http://www.digitalcrafts.com/sites/all/themes/digitalcrafts/images/digitalcrafts-site-logo.png',
-            token: (token) => {
+            token: (token)=>{
             	console.log(token);
             	console.log(this.props.auth.token);
                 var theData = {
-                    amount: this.props.cart.totalPrice * 100,
+                    amount: this.props.cart.totalPrice * 100, //  the total is in pennies
                     stripeToken: token.id,
                     userToken: this.props.auth.token,
                 }
@@ -64,24 +63,20 @@ class Cart extends Component{
 		if(!this.props.cart.items){
 			// if this return occurs, the render is DONE
 			return(
-				<div>
-					<h3>Your cart is empty. Get shopping!</h3>
+				<div className="cartBody">
+					<h3>Your cart is empty. Click add to cart in any game page to fill your cart.</h3>
 				</div>
 			)
 		}else{
 			var cartArray = this.props.cart.contents.map((product,index)=>{
-				console.log(product)
-				console.log(product.name)
+				// console.log(product)
 				return (
-					<div>≈
-						<CartRow key={index} product={product} />
-						{product.name}
-					</div>
+						<CartRow key={index} product={product}></CartRow>
 				)
 			})
 			return(
 				<div>
-					<h2>Your order total is: ${this.props.cart.totalPrice} - <button className="btn btn-primary" onClick={this.makePayment}>Checkout!</button></h2>
+					<h2>Your order total is: ${this.props.cart.total} - <button className="btn btn-primary" onClick={this.makePayment}>Proceed to Checkout</button></h2>
 					<table className="table table-striped">
 						<thead>
 							<tr>
@@ -93,6 +88,12 @@ class Cart extends Component{
 						<tbody>
 							{cartArray}
 						</tbody>
+						{/* <tfoot>
+							<div>
+								<tr>Proceed to Checkout</tr>
+								<tr><button className="btn btn-primary" onClick=""></button></tr>
+							</div>
+						</tfoot> */}
 					</table>
 				</div> 	 
 			)
